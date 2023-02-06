@@ -1,0 +1,896 @@
+#include <iostream>
+#include <fstream> 
+#include <math.h>
+#include <string>
+#include <windows.h>  
+
+using namespace std;
+
+class car
+{
+public:
+    char bn[50];
+    char issues[50];
+    char pricee[50];
+    int price = 0;
+};
+
+class user
+{
+public:
+    char name[50];
+};
+
+class operation : public user, car
+{
+public:
+    char name[50];
+    char carbn[50];
+    bool rented;
+    char rentedc;
+};
+
+class superglue
+{
+public:
+    int cars = 0;
+    int users = 0;
+};
+
+int howmany(fstream& a,int b)
+{
+    int counter = 0;
+    int thatmany = 0;
+    char bin;
+    for (; !a.eof();)
+    {
+        a >> bin;
+        if (bin == ';')
+            if (counter == b)
+            {
+                thatmany++;
+                counter = 0;
+            }
+            else
+                counter++;
+    }
+    return thatmany;
+}
+
+int main()
+{
+    char bin{};
+    char choice;
+    string name;
+    bool av = 0,av2 = 1,av3 = 1,av4=0;
+    class superglue master;
+    fstream fcars;
+    fstream fusers;
+    fstream foperations;
+    for (;av3==1;)
+    {
+        av2 = 1;
+        system("cls");
+        cout << "Please select what would you like to do next and enter according number" << endl;
+        cout << "(1)Edit car database" << endl;
+        cout << "(2)Edit user database" << endl;
+        cout << "(3)Edit operations database" << endl;
+        cout << "(4)take a look into databases" << endl;
+        cout << "(5)Exit app" << endl;
+        cin >> choice;
+        switch ((int)choice)
+        {
+        case 49:
+            av2 = 1;
+            for (;av2==1;)
+            {
+                av4 = 1;
+                fcars.open("Cars.txt", ios::in);
+                master.cars = howmany(fcars, 2);
+                fcars.close();
+                fcars.open("Cars.txt", ios::in);
+                car* ocars = new car[master.cars];
+                for (; !fcars.eof();)
+                {
+                    for (int i = 0; i < master.cars && !fcars.eof(); i++)
+                    {
+                        int n;
+                        fcars >> bin;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            ocars[i].bn[n] = bin;
+                            fcars >> noskipws >> bin;
+                        }
+                        ocars[i].bn[n] = '\0';
+                        fcars >> bin;
+                        fcars >> bin;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            ocars[i].issues[n] = bin;
+                            fcars >> noskipws >> bin;
+                        }
+                        ocars[i].issues[n] = '\0';
+                        fcars >> bin;
+                        fcars >> bin;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            ocars[i].pricee[n] = bin;
+                            fcars >> bin;
+                        }
+                        ocars[i].pricee[n] = '\0';
+                        for (int m = 0; m < n; m++)
+                        {
+                            ocars[i].price += (((int)ocars[i].pricee[m]) - 48) * pow(10.0, (n - m - 1));
+                        }
+                        fcars >> noskipws >> bin;
+                        fcars >> noskipws >> bin;
+                    }
+                    for (; !fcars.eof();)
+                        fcars >> noskipws >> bin;
+                }
+                foperations.open("Operations.txt",ios::in);
+                operation* ooperations = new operation[master.cars];
+                for (; !foperations.eof();)
+                {
+                    for (int i = 0; i < master.cars && !foperations.eof(); i++)
+                    {
+                        int n;
+                        foperations >> bin;
+                        if (foperations.eof())
+                            break;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            if ((int)bin > 64 && (int)bin < 123)
+                                ooperations[i].carbn[n] = bin;
+                            else
+                                n--;
+                            foperations >> noskipws >> bin;
+                        }
+                        ooperations[i].carbn[n] = '\0';
+                        foperations >> noskipws >> bin;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            if ((int)bin > 64 && (int)bin < 123)
+                                ooperations[i].name[n] = bin;
+                            else
+                                n--;
+                            foperations >> noskipws >> bin;
+                        }
+                        ooperations[i].name[n] = '\0';
+                        foperations >> noskipws >> bin;
+                        foperations >> noskipws >> bin;
+                        ooperations[i].rentedc = bin;
+                        ooperations[i].rented = (int(bin) - 48);
+                        foperations >> noskipws >> bin;
+                    }
+                    for (; !foperations.eof();)
+                        foperations >> noskipws >> bin;
+                }
+                foperations.close();
+                fcars.close();
+                system("cls");
+                cout << "Please select what would you like to do next and enter according number" << endl;
+                cout << "(1)Edit car info" << endl;
+                cout << "(2)Add another car" << endl;
+                cout << "(3)Delete car" << endl;
+                cout << "(4)Exit this menu" << endl;
+                cin >> choice;
+                switch ((int)choice)
+                {
+                case 49:
+                    system("cls");
+                    cout << "Please enter brand of the car which data You want to edit" << endl;
+                    cin >> name;
+                    int i;
+                    for (i = 0; i < master.cars; i++)
+                    {
+                        if ((string)ocars[i].bn == name)
+                        {
+                            av = 1;
+                            break;
+                        }
+                    }
+                    if (av != 1)
+                    {
+                        cout << "Car not found" << endl;
+                        cout << "Enter some character to continue" << endl;
+                        cin >> choice;
+                    }
+                    else
+                    {
+                        for (; av2 == 1;)
+                        {
+                            av2 = 1;
+                            system("cls");
+                            cout << "Please select what would you like to change" << endl;
+                            cout << "(1)Brand name" << endl;
+                            cout << "(2)Issues with car" << endl;
+                            cout << "(3)Car rent price" << endl;
+                            cout << "(4)I am done(save changes)" << endl;
+                            cin >> choice;
+                            switch ((int)choice)
+                            {
+                            case 49:
+                                cout << "Please enter new car brand name" << endl;
+                                cin.ignore();
+                                getline(cin, name);
+                                int h;
+                                for (h = 0; name[h] != '\0'; h++)
+                                    ocars[i].bn[h] = name[h];
+                                ocars[i].bn[h] = '\0';
+                                for (h = 0; name[h] != '\0'; h++)
+                                    ooperations[i].carbn[h] = name[h];
+                                ooperations[i].carbn[h] = '\0';
+                                break;
+                            case 50:
+                                cout << "Please enter what issues car has now" << endl;
+                                cin.ignore();
+                                getline(cin, name);
+                                for (h = 0; name[h] != '\0'; h++)
+                                        ocars[i].issues[h] = name[h];
+                                
+                                ocars[i].issues[h] = '\0';
+                                break;
+                            case 51:
+                                cout << "Please enter new price for renting" << endl;
+                                cin >> name;
+                                for (h = 0; name[h] != '\0'; h++)
+                                    ocars[i].pricee[h] = name[h];
+                                ocars[i].pricee[h] = '\0';
+                                break;
+                            case 52:
+                                fcars.close();
+                                fcars.open("Cars.txt", ios::out | ios::trunc);
+                                fcars.close();
+                                fcars.open("Cars.txt", ios::app);
+                                for (int i = 0; i < master.cars; i++)
+                                {
+                                    fcars << noskipws << (string)ocars[i].bn << ';' << '\n';
+                                    fcars << noskipws << (string)ocars[i].issues << ';' << '\n';
+                                    fcars << noskipws << (string)ocars[i].pricee << ';' << '\n' << '\n';
+                                }
+                                fcars.close();
+                                foperations.open("Operations.txt", ios::out | ios::trunc);
+                                foperations.close();
+                                foperations.open("Operations.txt", ios::app);
+                                for (int n = 0; n < master.cars; n++)
+                                {
+                                        foperations << noskipws << (string)ooperations[n].carbn << ';' << '\n';
+                                        foperations << noskipws << (string)ooperations[n].name << ';' << '\n';
+                                        foperations << noskipws << ooperations[n].rentedc << ';' << '\n' << '\n';
+                                    
+                                }
+                                foperations.close();
+                                av2 = 0;
+                                break;
+                            default:
+                                cout << "Enter proper number" << endl;
+                                Sleep(5000);
+                                break;
+                            }
+                        }
+                        av2 = 1;
+                    }
+                    delete ocars;
+                    delete ooperations;
+                    break;
+                case 50:
+                    system("cls");
+                    fcars.close();
+                    foperations.close();
+                    fcars.open("Cars.txt", ios::app);
+                    foperations.open("Operations.txt", ios::app);
+                    cout << "Please enter brand name of car you want to add" << endl;
+                    cin.ignore();
+                    getline(cin, name);
+                    fcars << noskipws << name << ';' << '\n';
+                    foperations << noskipws << name << ';' << '\n' << "none" << ';' << '\n' << '0' << ';' << '\n' << '\n';
+                    cout << "\nPlease enter what issues does this car have" << endl;
+                    cin.sync();
+                    getline(cin, name);
+                    fcars << noskipws << name << ';' << '\n';
+                    cout << "\nPlease enter how much will it cost to rent this car" << endl;
+                    cin >> name;
+                    fcars << noskipws << name << ';' << '\n';
+                    fcars.close();
+                    foperations.close();
+                    delete ocars;
+                    delete ooperations;
+                    break;
+                case 51:
+                    system("cls");
+                    cout << "Please enter brand of the car which data You want to delete" << endl;
+                    cin.ignore();
+                    getline(cin, name);
+                    int m;
+                    for (m = 0; m < master.cars; m++)
+                    {
+                        if ((string)ocars[m].bn == name)
+                        {
+                            av = 1;
+                            break;
+                        }
+                    }
+                    if (av != 1)
+                        cout << "Car not found" << endl;
+                    else
+                    {
+                        fcars.open("Cars.txt", ios::out | ios::trunc);
+                        fcars.close();
+                        fcars.open("Cars.txt", ios::app);
+                        for (int n = 0; n < master.cars; n++)
+                        {
+                            if (n != m)
+                            {
+                                fcars << noskipws << (string)ocars[n].bn << ';' << '\n';
+                                fcars << noskipws << (string)ocars[n].issues << ';' << '\n';
+                                fcars << noskipws << (string)ocars[n].pricee << ';' << '\n' << '\n';
+                            }
+                        }
+                        fcars.close();
+                        foperations.open("Operations.txt", ios::out | ios::trunc);
+                        foperations.close();
+                        foperations.open("Operations.txt", ios::app);
+                        for (int n = 0; n < master.cars; n++)
+                        {
+                            if (n != m)
+                            {
+                                foperations << noskipws << (string)ooperations[n].carbn << ';' << '\n';
+                                foperations << noskipws << (string)ooperations[n].name << ';' << '\n';
+                                foperations << noskipws << ooperations[n].rentedc << ';' << '\n' << '\n';
+                            }
+                        }
+                        foperations.close();
+                    }
+                    delete ocars;
+                    delete ooperations;
+                    break;                   
+                case 52:
+                    av2 = 0;
+                    break;
+                default:
+                    cout << "Enter proper number" << endl;
+                    Sleep(5000);
+                    delete ocars;
+                    delete ooperations;
+                    break;
+                }
+            }
+            av2 = 1;
+            break;
+        case 50:
+            for (; av2 != 0;)
+            {
+                fusers.open("Users.txt", ios::in);
+                foperations.open("Operations.txt", ios::in);
+                fcars.open("Cars.txt", ios::in);
+                master.cars = howmany(fcars, 2);
+                master.users = howmany(fusers, 0);
+                fusers.close();
+                fusers.open("Users.txt", ios::in);
+                user* ousers = new user[master.users];
+                operation* ooperations = new operation[master.cars];
+                for (; !fusers.eof();)
+                {
+                    for (int i = 0; i < master.users - 1 && !fusers.eof(); i++)
+                    {
+                        int n;
+                        fusers >> bin;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            if ((int)bin > 64 && (int)bin < 123)
+                                ousers[i].name[n] = bin;
+                            else
+                                n--;
+                            fusers >> noskipws >> bin;
+                        }
+                        ousers[i].name[n] = '\0';
+                        if (!fusers.eof())
+                            fusers >> bin;
+                        if (!fusers.eof())
+                            fusers >> noskipws >> bin;
+                    }
+                    for (; !fusers.eof();)
+                        fusers >> noskipws >> bin;
+                }
+                for (; !foperations.eof();)
+                {
+                    for (int i = 0; i < master.cars && !foperations.eof(); i++)
+                    {
+                        int n;
+                        foperations >> bin;
+                        if (foperations.eof())
+                            break;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            if ((int)bin > 64 && (int)bin < 123)
+                                ooperations[i].carbn[n] = bin;
+                            else
+                                n--;
+                            foperations >> noskipws >> bin;
+                        }
+                        ooperations[i].carbn[n] = '\0';
+                        foperations >> noskipws >> bin;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            if ((int)bin > 64 && (int)bin < 123)
+                                ooperations[i].name[n] = bin;
+                            else
+                                n--;
+                            foperations >> noskipws >> bin;
+                        }
+                        ooperations[i].name[n] = '\0';
+                        foperations >> noskipws >> bin;
+                        foperations >> noskipws >> bin;
+                        ooperations[i].rentedc = bin;
+                        ooperations[i].rented = (int(bin) - 48);
+                        foperations >> noskipws >> bin;
+                    }
+                    for (; !foperations.eof();)
+                        foperations >> noskipws >> bin;
+                }
+                fusers.close();
+                fcars.close();
+                foperations.close();
+                system("cls");
+                cout << "Please select what would you like to do next and enter according number" << endl;
+                cout << "(1)Add user" << endl;
+                cout << "(2)Edit user" << endl;
+                cout << "(3)Exit this menu" << endl;
+                cin >> choice;
+                switch ((int)choice)
+                {
+                case 49:
+                    fusers.open("Users.txt", ios::app);
+                    cout << "enter the name of the user You want to add" << endl;
+                    cin.ignore();
+                    cin.sync();
+                    getline(cin, name);
+                    fusers << noskipws << name << ';' << '\n' << '\n';
+                    fusers.close();
+                    delete ousers;
+                    delete ooperations;
+                    break;
+                case 50:
+                    cout << "Enter the name of the user you want to edit" << endl;
+                    cin.ignore();
+                    cin.sync();
+                    getline(cin, name);
+                    int i;
+                    for (i = 0; i < master.users; i++)
+                    {
+                        if ((string)ousers[i].name == name)
+                        {
+                            av = 1;
+                            break;
+                        }
+                    }
+                    if (av != 1)
+                    {
+                        cout << "User not found" << endl;
+                        cout << "Enter some character to continue" << endl;
+                        cin >> choice;
+                    }
+                    else
+                    {
+                        av = 0;
+                        int l;
+                        for(l=0;l<master.cars;l++)
+                            if ((string)ooperations[l].name == name)
+                            {
+                                av = 1;
+                                break;
+                            }
+                        cout << "Enter new name of the user you have chosen" << endl;
+                        cin.sync();
+                        getline(cin, name);
+                        int n;
+                        for (n = 0; name[n] != '\0'; n++)
+                            ousers[i].name[n] = name[n];
+                        ousers[i].name[n] = name[n];
+                        if (av == 1)
+                        {
+                            for (n = 0; name[n] != '\0'; n++)
+                                ooperations[l].name[n] = name[n];
+                            ooperations[l].name[n] = name[n];
+
+                            foperations.open("Operations.txt", ios::out | ios::trunc);
+                            foperations.close();
+                            foperations.open("Operations.txt", ios::app);
+                            for (int m = 0; m < master.cars; m++)
+                            {
+                                foperations << noskipws << (string)ooperations[m].carbn << ';' << '\n';
+                                foperations << noskipws << (string)ooperations[m].name << ';' << '\n';
+                                foperations << noskipws << ooperations[m].rentedc << ';' << '\n' << '\n';
+                            }
+
+                            foperations.close();
+                        }
+                        fusers.open("Users.txt", ios::out | ios::trunc);
+                        fusers.close();
+                        fusers.open("Users.txt", ios::app);
+                        for (int i = 0; i < master.users - 1; i++)
+                            fusers << noskipws << (string)ousers[i].name << ';' << '\n' << '\n';
+                        fusers.close();
+                    }
+                    delete ousers;
+                    delete ooperations;
+                    break;
+                case 51:
+                    av2 = 0;
+                    break;
+                default:
+                    cout << "Enter proper number" << endl;
+                    Sleep(5000);
+                    delete ousers;
+                    delete ooperations;
+                    break;
+                }
+            }
+        case 51:
+            for (; av2 == 1;)
+            {
+                    fusers.open("Users.txt", ios::in);
+                    foperations.open("Operations.txt", ios::in);
+                    fcars.open("Cars.txt", ios::in);
+                    master.cars = howmany(fcars, 2);
+                    master.users = howmany(fusers, 0);
+                    fusers.close();
+                    fusers.open("Users.txt", ios::in);
+                    user* ousers = new user[master.users];
+                    operation* ooperations = new operation[master.cars];
+                    for (; !fusers.eof();)
+                    {
+                        for (int i = 0; i < master.users - 1 && !fusers.eof(); i++)
+                        {
+                            int n;
+                            fusers >> bin;
+                            for (n = 0; bin != ';'; n++)
+                            {
+                                if ((int)bin > 64 && (int)bin < 123)
+                                    ousers[i].name[n] = bin;
+                                else
+                                    n--;
+                                fusers >> noskipws >> bin;
+                            }
+                            ousers[i].name[n] = '\0';
+                            if (!fusers.eof())
+                                fusers >> bin;
+                            if (!fusers.eof())
+                                fusers >> noskipws >> bin;
+                        }
+                        for (; !fusers.eof();)
+                            fusers >> noskipws >> bin;
+                    }
+                    for (; !foperations.eof();)
+                    {
+                        for (int i = 0; i < master.cars && !foperations.eof(); i++)
+                        {
+                            int n;
+                            foperations >> bin;
+                            if (foperations.eof())
+                                break;
+                            for (n = 0; bin != ';'; n++)
+                            {
+                                if ((int)bin > 64 && (int)bin < 123)
+                                    ooperations[i].carbn[n] = bin;
+                                else
+                                    n--;
+                                foperations >> noskipws >> bin;
+                            }
+                            ooperations[i].carbn[n] = '\0';
+                            foperations >> noskipws >> bin;
+                            for (n = 0; bin != ';'; n++)
+                            {
+                                if ((int)bin > 64 && (int)bin < 123)
+                                    ooperations[i].name[n] = bin;
+                                else
+                                    n--;
+                                foperations >> noskipws >> bin;
+                            }
+                            ooperations[i].name[n] = '\0';
+                            foperations >> noskipws >> bin;
+                            foperations >> noskipws >> bin;
+                            ooperations[i].rentedc = bin;
+                            ooperations[i].rented = (int(bin) - 48);
+                            foperations >> noskipws >> bin;
+                        }
+                        for (; !foperations.eof();)
+                            foperations >> noskipws >> bin;
+                    }
+                    fusers.close();
+                    fcars.close();
+                    foperations.close();
+                    system("cls");
+                    cout << "Please select what would you like to do next and enter according number" << endl;
+                    cout << "(1)Register new transaction" << endl;
+                    cout << "(2)Register end of one renting" << endl;
+                    cout << "(3)Exit this menu" << endl;
+                    cin >> choice;
+                switch ((int)choice)
+                {
+                case 49:
+                    cout << "Please enter on which car transaction you want to register" << endl;
+                    cin.ignore();
+                    getline(cin, name);
+                    int i;
+                    av = 0;
+                    for (i = 0; i < master.cars; i++)
+                    {
+                        if ((string)ooperations[i].carbn == name && ooperations[i].rented==0)
+                        {
+                            av = 1;
+                            break;
+                        }
+                    }
+                    if (av != 1)
+                    {
+                        cout << "Car not found or already rented" << endl;
+                        cout << "Enter some character to continue" << endl;
+                        cin >> choice;
+                    }
+                    else
+                    {
+                        cout << "Enter new name of the user who rented car" << endl;
+                        cin.sync();
+                        getline(cin, name);
+                        int h;
+                        av = 0;
+                        for (h = 0; h < master.users; h++)
+                        {
+                            if ((string)ousers[h].name == name)
+                            {
+                                av = 1;
+                                break;
+                            }
+                        }
+                        if (av == 0)
+                        {
+                            cout << "User not registered" << endl;
+                            cout << "Enter some character to continue" << endl;
+                            cin >> choice;
+                        }
+                        else
+                        {
+                            for (h = 0; name[h] != '\0'; h++)
+                                ooperations[i].name[h] = name[h];
+                            ooperations[i].name[h] = name[h];
+                            ooperations[i].rented = 1;
+                            ooperations[i].rentedc = '1';
+                            foperations.open("Operations.txt", ios::out | ios::trunc);
+                            foperations.close();
+                            foperations.open("Operations.txt", ios::app);
+                            for (int m = 0; m < master.cars; m++)
+                            {
+                                foperations << noskipws << (string)ooperations[m].carbn << ';' << '\n';
+                                foperations << noskipws << (string)ooperations[m].name << ';' << '\n';
+                                foperations << noskipws << ooperations[m].rentedc << ';' << '\n' << '\n';
+                            }
+                            foperations.close();
+                        }
+                    }
+                    delete ooperations;
+                    delete ousers;
+                        break;
+                case 50:
+                    cout << "Please select which car was given back" << endl;
+                    cin.ignore();
+                    cin.sync();
+                    getline(cin, name);
+                    av = 0;
+                    int p;
+                    for (p = 0; p < master.cars; p++)
+                    {
+                        if ((string)ooperations[p].carbn == name)
+                        {
+                            av = 1;
+                            break;
+                        }
+                    }
+                    if (av != 1)
+                    {
+                        cout << "car not found\nPlease enter any char to continue" << endl;
+                        cin >> choice;
+                    }
+                    else
+                    {
+                        ooperations[p].rentedc = '0';
+                        ooperations[p].rented = 0;
+                    }
+                    foperations.open("Operations.txt", ios::out | ios::trunc);
+                    foperations.close();
+                    foperations.open("Operations.txt", ios::app);
+                    for (int m = 0; m < master.cars; m++)
+                    {
+                        foperations << noskipws << (string)ooperations[m].carbn << ';' << '\n';
+                        foperations << noskipws << (string)ooperations[m].name << ';' << '\n';
+                        foperations << noskipws << ooperations[m].rentedc << ';' << '\n' << '\n';
+                    }
+                    foperations.close();
+                    delete ooperations;
+                    delete ousers;
+                    break;
+                    case 51:
+                        av2 = 0;
+                        break;
+                    default:
+                        cout << "Enter proper number" << endl;
+                        Sleep(5000);
+                        delete ooperations;
+                        delete ousers;
+                        break;
+                }
+            }
+        case 52:
+            for (; av2 == 1;)
+            {
+                fcars.open("Cars.txt", ios::in);
+                master.cars = howmany(fcars, 2);
+                fcars.close();
+                fcars.open("Cars.txt", ios::in);
+                master.cars = howmany(fcars, 2);
+                fcars.close();
+                fcars.open("Cars.txt", ios::in);
+                car* ocars = new car[master.cars];
+                for (; !fcars.eof();)
+                {
+                    for (int i = 0; i < master.cars && !fcars.eof(); i++)
+                    {
+                        int n;
+                        fcars >> bin;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            ocars[i].bn[n] = bin;
+                            fcars >> noskipws >> bin;
+                        }
+                        ocars[i].bn[n] = '\0';
+                        fcars >> bin;
+                        fcars >> bin;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            ocars[i].issues[n] = bin;
+                            fcars >> noskipws >> bin;
+                        }
+                        ocars[i].issues[n] = '\0';
+                        fcars >> bin;
+                        fcars >> bin;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            ocars[i].pricee[n] = bin;
+                            fcars >> bin;
+                        }
+                        ocars[i].pricee[n] = '\0';
+                        for (int m = 0; m < n; m++)
+                        {
+                            ocars[i].price += (((int)ocars[i].pricee[m]) - 48) * pow(10.0, (n - m - 1));
+                        }
+                        fcars >> noskipws >> bin;
+                        fcars >> noskipws >> bin;
+                    }
+                    for (; !fcars.eof();)
+                        fcars >> noskipws >> bin;
+                }
+                foperations.open("Operations.txt", ios::in);
+                operation* ooperations = new operation[master.cars];
+                for (; !foperations.eof();)
+                {
+                    for (int i = 0; i < master.cars && !foperations.eof(); i++)
+                    {
+                        int n;
+                        foperations >> bin;
+                        if (foperations.eof())
+                            break;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            if ((int)bin > 64 && (int)bin < 123)
+                                ooperations[i].carbn[n] = bin;
+                            else
+                                n--;
+                            foperations >> noskipws >> bin;
+                        }
+                        ooperations[i].carbn[n] = '\0';
+                        foperations >> noskipws >> bin;
+                        for (n = 0; bin != ';'; n++)
+                        {
+                            if ((int)bin > 64 && (int)bin < 123)
+                                ooperations[i].name[n] = bin;
+                            else
+                                n--;
+                            foperations >> noskipws >> bin;
+                        }
+                        ooperations[i].name[n] = '\0';
+                        foperations >> noskipws >> bin;
+                        foperations >> noskipws >> bin;
+                        ooperations[i].rentedc = bin;
+                        ooperations[i].rented = (int(bin) - 48);
+                        foperations >> noskipws >> bin;
+                    }
+                    for (; !foperations.eof();)
+                        foperations >> noskipws >> bin;
+                }
+                foperations.close();
+                fcars.close();
+                system("cls");
+                cout << "Please select what would you like to do next and enter according number" << endl;
+                cout << "(1)Look into car database" << endl;
+                cout << "(2)Look into car database(show only available ones)" << endl;
+                cout << "(3)Look into user database" << endl;
+                cout << "(4)Look into transactions database" << endl;
+                cout << "(5)Exit this menu" << endl;
+                cin >> choice;
+                system("cls");
+                switch ((int)choice)
+                {
+                case 49:
+                    fcars.open("Cars.txt", ios::in);
+                    for (; !fcars.eof();)
+                    {
+                        fcars >> noskipws >> bin;
+                        cout << bin;
+                    }
+                    cout << "\n\nEnter any character to continue" << endl;
+                    cin >> choice;
+                    delete ocars;
+                    delete ooperations;
+                    break;
+                case 50:
+                    for (int j = 0; j < master.cars; j++)
+                    {
+                        if (ooperations[j].rentedc == '0')
+                        {
+                            cout << (string)ocars[j].bn << ';' << endl;
+                            cout << (string)ocars[j].issues << ';' << endl;
+                            cout << ocars[j].price << ';' << '\n' << endl;
+                        }
+                    }
+                    cout << "\n\nEnter any character to continue" << endl;
+                    cin >> choice;
+                    delete ocars;
+                    delete ooperations;
+                    break;
+                case 51:
+                    fusers.open("Users.txt", ios::in);
+                    for (; !fusers.eof();)
+                    {
+                        fusers >> noskipws >> bin;
+                        cout << bin;
+                    }
+                    cout << "\n\nEnter any character to continue" << endl;
+                    cin >> choice;
+                    delete ocars;
+                    delete ooperations;
+                    break;
+                case 52:
+                    foperations.open("Operations.txt", ios::in);
+                    for (; !foperations.eof();)
+                    {
+                        foperations >> noskipws >> bin;
+                        cout << bin;
+                    }
+                    cout << "\n\nEnter any character to continue" << endl;
+                    cin >> choice;
+                    delete ocars;
+                    delete ooperations;
+                    break;
+                case 53:
+                    av2 = 0;
+                    break;
+                default:
+                    cout << "Enter proper number" << endl;
+                    Sleep(5000);
+                    delete ocars;
+                    delete ooperations;
+                    break;
+                }
+            }
+            break;
+        case 53:
+            av3 = 0;
+            break;
+        default:
+            cout << "Enter proper number" << endl;
+            Sleep(5000);
+            break;
+        }
+    }
+}

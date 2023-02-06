@@ -1,0 +1,16 @@
+Volkswagen;
+Marek;
+1;
+
+Fiat;
+Marian;
+1;
+
+Toyota;
+Michal;
+0;
+
+Ford;
+Miroslaw;
+0;
+

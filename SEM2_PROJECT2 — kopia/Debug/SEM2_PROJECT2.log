@@ -1,0 +1,4 @@
+﻿  SEM2_PROJECT2.cpp
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\SEM_2\SEM2_PROJECT2 — kopia\SEM2_PROJECT2.cpp(123,104): warning C4244: "+=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\SEM_2\SEM2_PROJECT2 — kopia\SEM2_PROJECT2.cpp(798,104): warning C4244: "+=": konwersja z "double" do "int", możliwa utrata danych
+  SEM2_PROJECT2.vcxproj -> C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\SEM_2\SEM2_PROJECT2 — kopia\Debug\SEM2_PROJECT2.exe
