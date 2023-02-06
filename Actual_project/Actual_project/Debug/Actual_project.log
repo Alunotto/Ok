@@ -1,0 +1,16 @@
+﻿  Actual_project.cpp
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\proj_fun.h(149,18): warning C4244: "=": konwersja z "double" do "Uint32", możliwa utrata danych
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\proj_fun.h(248,14): warning C4101: "w": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\proj_fun.h(252,15): warning C4101: "r": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\proj_fun.h(256,17): warning C4101: "g": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\Actual_project.cpp(15,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\Actual_project.cpp(105,39): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\Actual_project.cpp(146,39): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\Actual_project.cpp(157,39): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\Actual_project.cpp(194,27): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\Actual_project.cpp(294,55): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\Actual_project.cpp(316,55): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\Actual_project.cpp(233,28): warning C4101: "i": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\Actual_project.cpp(277,44): warning C4101: "i": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Actual_project\proj_fun.h(331): warning C4715: "keyboard_out”: niewszystkie ścieżki kodu zwracają wartość
+  Actual_project.vcxproj -> C:\Users\aleks\Desktop\C++ stuff\PROGRAMY\Actual_project\Debug\Actual_project.exe
