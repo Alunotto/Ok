@@ -1,0 +1,27 @@
+﻿  AM_Project_bank.cpp
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(8,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(28,35): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(42,44): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(64,17): warning C4473: „scanf_s”: przekazano niewystarczającą liczbę argumentów dla ciągu formatowania
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(64,17): message : symbole zastępcze i ich parametry oczekują 2 argumentów ze zmienną liczbą argumentów, ale podano następującą liczbę zmiennych argumentów: 1
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(64,17): message : brakujący argument 2 o zmiennej liczbie parametrów jest wymagany w ciągu formatu „%c”
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(64,17): message : ten argument jest używany jako rozmiar bufora
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(105,65): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(131,45): warning C4473: „scanf_s”: przekazano niewystarczającą liczbę argumentów dla ciągu formatowania
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(131,45): message : symbole zastępcze i ich parametry oczekują 2 argumentów ze zmienną liczbą argumentów, ale podano następującą liczbę zmiennych argumentów: 1
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(131,45): message : brakujący argument 2 o zmiennej liczbie parametrów jest wymagany w ciągu formatu „%c”
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(131,45): message : ten argument jest używany jako rozmiar bufora
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(135,49): warning C4473: „scanf_s”: przekazano niewystarczającą liczbę argumentów dla ciągu formatowania
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(135,49): message : symbole zastępcze i ich parametry oczekują 2 argumentów ze zmienną liczbą argumentów, ale podano następującą liczbę zmiennych argumentów: 1
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(135,49): message : brakujący argument 2 o zmiennej liczbie parametrów jest wymagany w ciągu formatu „%c”
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(135,49): message : ten argument jest używany jako rozmiar bufora
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(141,65): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(188,29): warning C4473: „scanf_s”: przekazano niewystarczającą liczbę argumentów dla ciągu formatowania
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(188,29): message : symbole zastępcze i ich parametry oczekują 2 argumentów ze zmienną liczbą argumentów, ale podano następującą liczbę zmiennych argumentów: 1
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(188,29): message : brakujący argument 2 o zmiennej liczbie parametrów jest wymagany w ciągu formatu „%c”
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(188,29): message : ten argument jest używany jako rozmiar bufora
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(205,33): warning C4473: „scanf_s”: przekazano niewystarczającą liczbę argumentów dla ciągu formatowania
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(205,33): message : symbole zastępcze i ich parametry oczekują 2 argumentów ze zmienną liczbą argumentów, ale podano następującą liczbę zmiennych argumentów: 1
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(205,33): message : brakujący argument 2 o zmiennej liczbie parametrów jest wymagany w ciągu formatu „%c”
+C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\AM_Project_bank\AM_Project_bank.cpp(205,33): message : ten argument jest używany jako rozmiar bufora
+  AM_Project_bank.vcxproj -> C:\Users\Użytkownik\Desktop\przeróżności\Studia\FoCP\AM_Project_bank\Debug\AM_Project_bank.exe
